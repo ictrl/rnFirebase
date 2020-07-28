@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import {Button, TextInput} from 'react-native';
+import {Button, TextInput, View} from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 const Login = () => {
   // If null, no SMS has been sent
   const [confirm, setConfirm] = useState(null);
+  const [number, setNumber] = useState(null);
 
-  const [code, setCode] = useState(''); //123456
+  const [code, setCode] = useState('');
 
   // Handle the button press
   async function signInWithPhoneNumber(phoneNumber) {
@@ -24,10 +25,13 @@ const Login = () => {
 
   if (!confirm) {
     return (
-      <Button
-        title="Phone Number Sign In"
-        onPress={() => signInWithPhoneNumber('+91 8340238900')}
-      />
+      <View>
+        <TextInput value={number} onChangeText={(text) => setNumber(text)} />
+        <Button
+          title="Phone Number Sign In"
+          onPress={() => signInWithPhoneNumber(number)}
+        />
+      </View>
     );
   }
 

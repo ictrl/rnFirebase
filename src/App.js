@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import Login from './screens/Login';
+import Logout from './screens/Logout';
 
 const App = () => {
   // Set an initializing state whilst Firebase connects
@@ -29,6 +30,7 @@ const App = () => {
   return (
     <View>
       <Text>Welcome {user.phoneNumber}</Text>
+      <Logout />
     </View>
   );
 };
