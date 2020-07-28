@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "733717138313",
+    "firebase_url": "https://mobilenumberauth-6b37b.firebaseio.com",
+    "project_id": "mobilenumberauth-6b37b",
+    "storage_bucket": "mobilenumberauth-6b37b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733717138313:android:c233004ed4bdc23a87ef58",
+        "android_client_info": {
+          "package_name": "com.mobilenumberauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733717138313-qn9ne8f2c9st40eleq097jiip57r4u26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobilenumberauth",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "733717138313-9l28s75isvlp0152mo773a0j03kepc4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd5jcQBqsRQrTVB90adcdrta1X4o-a0bo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733717138313-9l28s75isvlp0152mo773a0j03kepc4k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
