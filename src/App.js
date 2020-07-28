@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <View>
-      <Text>Welcome {user.email}</Text>
+      <Text>Welcome {user.phoneNumber}</Text>
     </View>
   );
 };
