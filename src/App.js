@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import Login from './screens/Login';
 import Logout from './screens/Logout';
+import Spacer from './components/Spacer';
 
 const App = () => {
   // Set an initializing state whilst Firebase connects
@@ -15,20 +16,19 @@ const App = () => {
   function onAuthStateChanged(user) {
     setUser(user);
 
-    const {phoneNumber, metadata, uid} = user;
-    const data = {
-      uid,
-      phoneNumber,
-      creationTime: metadata.creationTime,
-      lastSignInTime: metadata.lastSignInTime,
-    };
+    if (user) {
+      const {phoneNumber, metadata, uid} = user;
+      const data = {
+        uid,
+        phoneNumber,
+        creationTime: metadata.creationTime,
+        lastSignInTime: metadata.lastSignInTime,
+      };
 
-    firestore()
-      .collection('Users')
-      .add(data)
-      .then(() => {
+      usersCollection.add(data).then(() => {
         console.log('User added!');
       });
+    }
 
     if (initializing) setInitializing(false);
   }
@@ -46,8 +46,12 @@ const App = () => {
 
   return (
     <View>
-      <Text>Welcome {user.phoneNumber}</Text>
-      <Logout />
+      <Spacer>
+        <Text>Welcome {user.phoneNumber}</Text>
+      </Spacer>
+      <Spacer>
+        <Logout />
+      </Spacer>
     </View>
   );
 };
