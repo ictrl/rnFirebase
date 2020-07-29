@@ -1,13 +1,13 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React from 'react';
+import {View, StyleSheet} from 'react-native';
 
-const Spacer = ({ children }) => {
+const Spacer = ({children}) => {
   return <View style={style.spacer}>{children}</View>;
 };
 
 const style = StyleSheet.create({
   spacer: {
-    margin: 15,
+    margin: 20,
   },
 });
 

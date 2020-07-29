@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Input, Button, Text } from "react-native-elements";
-import Spacer from "../components/Spacer";
-import ShowError from "../components/ShowError";
+import React, {useState} from 'react';
+import {Input, Button, Text} from 'react-native-elements';
+import Spacer from '../components/Spacer';
+import ShowError from '../components/ShowError';
 
-const AuthForm = ({ header, errMsg, buttonText, onSubmit }) => {
+const AuthForm = ({header, errMsg, buttonText, onSubmit}) => {
   // const [email, setEmail] = useState("coolsaurav34@gmail.com"); //todo
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   // const [password, setPassword] = useState("samrat.online"); //todo
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
 
   return (
     <>
@@ -38,12 +38,6 @@ const AuthForm = ({ header, errMsg, buttonText, onSubmit }) => {
       </Spacer>
     </>
   );
-};
-
-AuthForm.navigationOptions = () => {
-  return {
-    header: () => false,
-  };
 };
 
 export default AuthForm;
