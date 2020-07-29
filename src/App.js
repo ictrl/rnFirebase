@@ -1,59 +1,21 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
-import Login from './screens/Login';
-import Logout from './screens/Logout';
-import Spacer from './components/Spacer';
+import React from 'react';
+import {View, Text} from 'react-native';
 
-const App = () => {
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-  const usersCollection = firestore().collection('Users');
+import LanguageScreen from './screens/LanguageScreen';
+import LoginScreen from './screens/LoginScreen';
+import FormScreen from './screens/FormScreen';
+import ShareScreen from './screens/ShareScreen';
 
-  // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
-    if (user) {
-      const {phoneNumber, metadata, uid} = user;
-      const data = {
-        uid,
-        phoneNumber,
-        creationTime: metadata.creationTime,
-        lastSignInTime: metadata.lastSignInTime,
-      };
+const navigationFlow = createStackNavigator({
+  LanguageScreen,
+  LoginScreen,
+  FormScreen,
+  ShareScreen,
+});
 
-      usersCollection.add(data).then(() => {
-        console.log('User added!');
-      });
-    }
-
-    if (initializing) setInitializing(false);
-  }
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  if (initializing) return null;
-
-  if (!user) {
-    return <Login />;
-  }
-
-  return (
-    <View>
-      <Spacer>
-        <Text>Welcome {user.phoneNumber}</Text>
-      </Spacer>
-      <Spacer>
-        <Logout />
-      </Spacer>
-    </View>
-  );
-};
+const App = createAppContainer(navigationFlow);
 
 export default App;
