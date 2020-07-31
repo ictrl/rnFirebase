@@ -1,4 +1,4 @@
-import { NavigationActions } from "react-navigation";
+import {NavigationActions} from 'react-navigation';
 
 let navigator;
 
@@ -11,6 +11,6 @@ export const navigate = (routeName, params) => {
     NavigationActions.navigate({
       routeName,
       params,
-    })
+    }),
   );
 };

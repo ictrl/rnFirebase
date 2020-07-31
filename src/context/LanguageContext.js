@@ -4,8 +4,11 @@ import {navigate} from '../navigationRef';
 const languageReducer = (state, action) => {
   switch (action.type) {
     case 'change_language':
-      navigate('LoginScreen');
-      return {...state, language: action.payload};
+      if (action.payload === 'English') return {...state, language: false};
+      if (action.payload === 'Hindi') return {...state, language: true};
+
+    case 'toggle_language':
+      return {...state, language: !state.language};
     default:
       return state;
   }
@@ -13,10 +16,15 @@ const languageReducer = (state, action) => {
 
 const changeLanguage = (dispatch) => (language) => {
   dispatch({type: 'change_language', payload: language});
+  navigate('Login');
+};
+
+const toggleLanguage = (dispatch) => () => {
+  dispatch({type: 'toggle_language'});
 };
 
 export const {Context, Provider} = createDataContext(
   languageReducer,
-  {changeLanguage},
-  {language: 'English'},
+  {changeLanguage, toggleLanguage},
+  {language: true}, // true  === "Hindi" , false === "English"
 );

@@ -1,18 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import React, {useState, useContext, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
 import SplashScreen from './SplashScreen';
 import LanguageScreen from './LanguageScreen';
 import FormScreen from './FormScreen';
-import {navigate} from '../navigationRef';
+import {Context as AuthContext} from '../context/AuthContext';
 
 const ResolveAuthScreen = () => {
+  const {state, update_uid} = useContext(AuthContext);
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
-
   function onAuthStateChanged(user) {
-    console.log('---->', user);
-    setUser(user);
+    console.log({user});
+    if (user) {
+      update_uid(user.uid, user.phoneNumber);
+      setUser(user);
+    }
     if (initializing) setInitializing(false);
   }
 
@@ -29,5 +31,9 @@ const ResolveAuthScreen = () => {
 
   return <FormScreen />;
 };
-
+ResolveAuthScreen.navigationOptions = () => {
+  return {
+    header: () => false,
+  };
+};
 export default ResolveAuthScreen;
